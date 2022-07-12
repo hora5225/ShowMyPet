@@ -11,7 +11,7 @@ app = Flask(__name__)
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 app.config['UPLOAD_FOLDER'] = "./static/profile_pics"
 
-SECRET_KEY = 'SPARTA'
+SECRET_KEY = 'SHOWMYPET'
 
 client = MongoClient('mongodb+srv://test:sparta@cluster0.2mj0lyi.mongodb.net/?retryWrites=true&w=majority')
 db = client.showmypet
@@ -53,7 +53,23 @@ def user(username):
 @app.route('/sign_in', methods=['POST'])
 def sign_in():
     # 로그인
-    return jsonify({'result': 'success'})
+    id_receive = request.form['id_give']
+    password_receive = request.form['password_give']
+
+    pw_hash = hashlib.sha256(password_receive.encode('utf-8')).hexdigest()
+    result = db.users.find_one({'id': id_receive, 'password': pw_hash})
+
+    if result is not None:
+        payload = {
+         'id': id_receive,
+         'exp': datetime.utcnow() + timedelta(seconds=60 * 60 * 24)  # 로그인 24시간 유지
+        }
+        token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
+
+        return jsonify({'result': 'success', 'token': token})
+    # 찾지 못하면
+    else:
+        return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})
 
 
 @app.route('/sign_up/save', methods=['POST'])
@@ -75,16 +91,6 @@ def check_dup():
     exists = bool(db.users.find_one({"username": username_receive}))
     return jsonify({'result': 'success', 'exists': exists})
 
-
-@app.route('/update_profile', methods=['POST'])
-def save_img():
-    token_receive = request.cookies.get('mytoken')
-    try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        # 프로필 업데이트
-        return jsonify({"result": "success", 'msg': '프로필을 업데이트했습니다.'})
-    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
-        return redirect(url_for("home"))
 
 
 @app.route('/posting', methods=['POST'])
@@ -109,15 +115,15 @@ def get_posts():
         return redirect(url_for("home"))
 
 
-@app.route('/update_like', methods=['POST'])
-def update_like():
-    token_receive = request.cookies.get('mytoken')
-    try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        # 좋아요 수 변경
-        return jsonify({"result": "success", 'msg': 'updated'})
-    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
-        return redirect(url_for("home"))
+# @app.route('/update_like', methods=['POST'])
+# def update_like():
+#     token_receive = request.cookies.get('mytoken')
+#     try:
+#         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+#         # 좋아요 수 변경
+#         return jsonify({"result": "success", 'msg': 'updated'})
+#     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+#         return redirect(url_for("home"))
 
 
 if __name__ == '__main__':
