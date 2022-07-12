@@ -1,31 +1,124 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
+<head>
+    <meta charset="UTF-8">
+    <title>쇼마이펫 메인</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <style>
+        :root {
+            --main-color: #ffcd00;
+            --sub_color1: #fff9f0;
+            --sub_color2: #333333;
+        }
 
-        <!-- Webpage Title -->
-        <title>Home | SWEETER</title>
+        @font-face {
+            font-family: 'Happiness-Sans-Title';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/Happiness-Sans-Title.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
 
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        @font-face {
+            font-family: 'Happiness-Sans-Regular';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/Happiness-Sans-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+        }
 
-        <!-- Bulma CSS -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
-        <!-- Font Awesome CSS -->
-        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        html, body {
+            font-family: 'Happiness-Sans-Title';
+            width: 100%;
+            height: 100%;
+        }
 
-        <!-- JS -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+        header {
+            width: 100%;
+            height: 400px;
+            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../static/main_bg.jpg');;
+            background-position: bottom;
+            background-attachment: fixed;
+            background-size: cover;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .main-title {
+            font-size: 60px;
+            color: #fff;
+
+        }
+
+        .btn-list {
+            margin-top: 50px;
+            width: 250px;
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .write_btn {
+            border: none;
+            padding: 0;
+            border: 1px solid var(--main-color);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            padding: 10px 10px;
+            border-radius: 13px;
+            font-size: 20px;
+            font-family: 'Happiness-Sans-Regular';
+            transition: 500ms ease-in-out;
+        }
+
+        .write_btn:hover {
+            background-color: var(--main-color);
+            color: #333;
+        }
+
+        .logout_btn {
+            border: none;
+            padding: 0;
+            border: 1px solid var(--main-color);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 13px;
+            font-size: 20px;
+            font-family: 'Happiness-Sans-Regular';
+            transition: 500ms ease-in-out;
+        }
+
+        .logout_btn:hover {
+            background-color: var(--main-color);
+            color: #333;
+        }
 
 
-        <script>
-        </script>
+    </style>
+</head>
+<body>
+<section class="hero is-white">
+    <div class="hero-body has-text-centered" style="padding-bottom:1rem;margin:auto;">
+        <h1 class="title is-sparta">SHOWMYPET</h1>
+        <h3 class="subtitle is-sparta">PET 자랑해요~</h3>
+    </div>
+</section>
+<header>
+    <h1 class="main-title">쇼마이펫</h1>
+    <ul class="btn-list">
+        <li>
+            <button class="write_btn">글쓰기</button>
+        </li>
+        <li>
+            <button class="logout_btn">로그아웃</button>
+        </li>
+    </ul>
+</header>
 
-    </head>
-    <body>
-    <button>
-        DDD
-    </button>
-    </body>
+</body>
 </html>
