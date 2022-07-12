@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>쇼마이펫 글쓰기</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <style>
+        :root {
+            --main-color: #ffcd00;
+            --sub_color1: #fff9f0;
+            --sub_color2: #333333;
+        }
+
+        @font-face {
+            font-family: 'Happiness-Sans-Title';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/Happiness-Sans-Title.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Happiness-Sans-Regular';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/Happiness-Sans-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        html, body {
+            font-family: 'Happiness-Sans-Title';
+            width: 100%;
+            height: 100%;
+        }
+
+        header {
+            width: 100%;
+            height: 400px;
+            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../static/main_bg.jpg');;
+            background-position: bottom;
+            background-attachment: fixed;
+            background-size: cover;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .main-title {
+            font-size: 60px;
+            color: #fff;
+
+        }
+
+        .btn-list {
+            margin-top: 50px;
+            width: 250px;
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .main_btn {
+            border: none;
+            padding: 0;
+            border: 1px solid var(--main-color);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            padding: 10px 10px;
+            border-radius: 13px;
+            font-size: 20px;
+            font-family: 'Happiness-Sans-Regular';
+            transition: 500ms ease-in-out;
+        }
+
+        .main_btn:hover {
+            background-color: var(--main-color);
+            color: #333;
+        }
+
+        .logout_btn {
+            border: none;
+            padding: 0;
+            border: 1px solid var(--main-color);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 13px;
+            font-size: 20px;
+            font-family: 'Happiness-Sans-Regular';
+            transition: 500ms ease-in-out;
+        }
+
+        .logout_btn:hover {
+            background-color: var(--main-color);
+            color: #333;
+        }
+
+        .wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 100px;
+        }
+        .sub-title {
+            font-size: 50px;
+            color: #333333;
+            margin-bottom: 100px;
+        }
+        .contwrap {
+            display: flex;
+        }
+        #pic-box {
+            width: 550px;
+            height: 800px;
+            border-radius: 15px;
+            background-image: url("../static/pic_bg.jpg");
+        }
+        .pet-pic {
+            width: 100%;
+        }
+        input[name="title"] {
+            width: 500px;
+            height: 50px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--main-color);
+            font-size: 20px;
+            font-family: 'Happiness-Sans-Title';
+            padding-left: 10px;
+        }
+        input[name="title"]::placeholder {
+            font-family: 'Happiness-Sans-Title';
+        }
+        #text-box {
+            width: 500px;
+            height: 715px;
+            border: 1px solid var(--main-color);
+            border-radius: 10px;
+            resize: none;
+            font-size: 20px;
+            font-family: 'Happiness-Sans-Regular';
+            padding-left: 10px;
+            padding-top: 10px;
+        }
+        #text-box::placeholder {
+            font-family: 'Happiness-Sans-Regular'
+        }
+        .sidewrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-left: 20px;
+        }
+        #save {
+            border: none;
+            padding: 0;
+            border: 1px solid var(--main-color);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            padding: 10px 10px;
+            border-radius: 13px;
+            font-size: 20px;
+            font-family: 'Happiness-Sans-Regular';
+            transition: 500ms ease-in-out;
+            width: 500px;
+            margin-top: 30px;
+        }
+        #save:hover {
+            background-color: var(--main-color);
+            color: #333;
+        }
+        .is-sparta{
+            color: #eec23f !important;;
+        }
+    </style>
+</head>
+<body>
+<section class="hero is-white">
+    <div class="hero-body has-text-centered" style="padding-bottom:1rem;margin:auto;">
+        <h1 class="title is-sparta">SHOWMYPET</h1>
+        <h3 class="subtitle is-sparta">PET 자랑해요~</h3>
+    </div>
+</section>
+<header>
+    <h1 class="main-title">쇼마이펫</h1>
+    <ul class="btn-list">
+        <li>
+            <button class="main_btn">메인페이지</button>
+        </li>
+        <li>
+            <button class="logout_btn">로그아웃</button>
+        </li>
+    </ul>
+</header>
+<div class="wrap">
+    <h2 class="sub-title">글쓰기</h2>
+    <div class="contwrap">
+        <div id="pic-box">
+            <img class="pet-pic" src="">
+        </div>
+        <div class="sidewrap">
+            <input type="text" name="title" placeholder="제목">
+            <textarea id="text-box" name="text" placeholder="소개"></textarea>
+            <button id="save">저장하기</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
