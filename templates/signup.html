@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>쇼마이펫 로그인</title>
+    <title>쇼마이펫 회원가입</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
     <style>
         :root {
@@ -10,12 +10,14 @@
             --sub_color1: #fff9f0;
             --sub_color2: #333333;
         }
+
         @font-face {
             font-family: 'Happiness-Sans-Title';
             src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/Happiness-Sans-Title.woff2') format('woff2');
             font-weight: normal;
             font-style: normal;
         }
+
         @font-face {
             font-family: 'Happiness-Sans-Regular';
             src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/Happiness-Sans-Regular.woff2') format('woff2');
@@ -42,9 +44,9 @@
             justify-content: center;
         }
 
-        #login-box {
+        #signup-box {
             width: 550px;
-            background-color: rgba(0,0,0, 0.5);
+            background-color: rgba(0, 0, 0, 0.5);
             border: 6px solid var(--main-color);
             border-radius: 15px;
 
@@ -54,16 +56,16 @@
             justify-content: center;
         }
 
-        #log-title {
+        #signup-title {
             font-size: 50px;
             color: #333;
-            margin-top: 60px;
-            margin-bottom: 60px;
+            margin-top: 30px;
+            margin-bottom: 30px;
             color: #fff;
         }
 
         input[type="text"] {
-            width: 500px;
+            width: 400px;
             height: 50px;
             margin-bottom: 5px;
             font-size: 30px;
@@ -72,28 +74,67 @@
             font-family: 'Happiness-Sans-Regular';
             transition: 500ms ease-in-out;
         }
+
         input[type="text"]:focus {
             background-color: var(--sub_color1);
         }
+
+        #id-check-btn {
+            width: 100px;
+            height: 50px;
+            padding: 0;
+            border: none;
+            font-family: 'Happiness-Sans-Regular';
+            vertical-align: top;
+            cursor: pointer;
+            background-color: var(--sub_color2);
+            color: #fff;
+            font-size: 20px;
+        }
+
+        #name-check-btn {
+            width: 100px;
+            height: 50px;
+            padding: 0;
+            border: none;
+            font-family: 'Happiness-Sans-Regular';
+            vertical-align: top;
+            cursor: pointer;
+            background-color: var(--sub_color2);
+            color: #fff;
+            font-size: 20px;
+        }
+
+        input[name="name"] {
+            margin-bottom: 40px;
+        }
+
         input[type="password"] {
             width: 500px;
             height: 50px;
-            margin-bottom: 50px;
             font-size: 30px;
+            margin-bottom: 5px;
             padding: 0;
             border: none;
             font-family: 'Happiness-Sans-Regular';
             transition: 500ms ease-in-out;
         }
+
         input[type="password"]:focus {
             background-color: var(--sub_color1);
         }
+
+        input[name="password-check"] {
+            margin-bottom: 70px;
+        }
+
         input::placeholder {
             font-size: 30px;
             font-family: 'Happiness-Sans-Regular';
         }
-        #login-btn {
-            width: 500px;
+
+        #cancellation-btn {
+            width: 248px;
             height: 50px;
             font-size: 30px;
             padding: 0;
@@ -102,13 +143,15 @@
             font-family: 'Happiness-Sans-Regular';
             background-color: var(--sub_color1);
             transition: 300ms ease-in-out;
-            cursor: pointer;
+            margin-bottom: 50px;
         }
-        #login-btn:hover {
-            background-color: #ffcd00;
+
+        #cancellation-btn:hover {
+            background-color: var(--main-color);
         }
-        #signup-btn {
-            width: 500px;
+
+        #signup-btn-fin {
+            width: 248px;
             height: 50px;
             font-size: 30px;
             padding: 0;
@@ -116,27 +159,32 @@
             font-family: 'Happiness-Sans-Regular';
             background-color: var(--sub_color1);
             transition: 300ms ease-in-out;
-            cursor: pointer;
             margin-bottom: 50px;
         }
-        #signup-btn:hover {
+
+        #signup-btn-fin:hover {
             background-color: var(--main-color);
         }
     </style>
 </head>
 <body>
 <div class="bg">
-    <div id="login-box">
-        <h1 id="log-title">쇼마이펫</h1>
+    <div id="signup-box">
+        <h1 id="signup-title">회원가입</h1>
         <ul>
-            <li><input type="text" name="id" placeholder="아이디"></li>
+            <li><input type="text" name="id" placeholder="아이디">
+                <button id="id-check-btn">중복확인</button>
+            </li>
+            <li><input type="text" name="name" placeholder="닉네임">
+                <button id="name-check-btn">중복확인</button>
+            </li>
             <li><input type="password" name="password" placeholder="비밀번호"></li>
+            <li><input type="password" name="password-check" placeholder="비밀번호 재입력"></li>
             <li>
-                <button id="login-btn">로그인</button>
+                <button id="signup-btn-fin">회원가입</button>
+                <button id="cancellation-btn">취소</button>
             </li>
-            <li>
-                <button id="signup-btn">회원가입</button>
-            </li>
+
         </ul>
     </div>
 </div>
