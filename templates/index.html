@@ -2,9 +2,143 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>쇼마이펫 로그인</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+    <style>
+        :root {
+            --main-color: #ffcd00;
+            --sub_color1: #fff9f0;
+            --sub_color2: #333333;
+        }
+        @font-face {
+            font-family: 'Happiness-Sans-Title';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/Happiness-Sans-Title.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Happiness-Sans-Regular';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/Happiness-Sans-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        html, body {
+            font-family: 'Happiness-Sans-Title';
+            width: 100%;
+            height: 100%;
+        }
+
+        .bg {
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../static/login_bg.jpg');
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #login-box {
+            width: 550px;
+            background-color: rgba(0,0,0, 0.5);
+            border: 6px solid var(--main-color);
+            border-radius: 15px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #log-title {
+            font-size: 50px;
+            color: #333;
+            margin-top: 60px;
+            margin-bottom: 60px;
+            color: #fff;
+        }
+
+        input[type="text"] {
+            width: 500px;
+            height: 50px;
+            margin-bottom: 5px;
+            font-size: 30px;
+            padding: 0;
+            border: none;
+            font-family: 'Happiness-Sans-Regular';
+            transition: 500ms ease-in-out;
+        }
+        input[type="text"]:focus {
+            background-color: var(--sub_color1);
+        }
+        input[type="password"] {
+            width: 500px;
+            height: 50px;
+            margin-bottom: 50px;
+            font-size: 30px;
+            padding: 0;
+            border: none;
+            font-family: 'Happiness-Sans-Regular';
+            transition: 500ms ease-in-out;
+        }
+        input[type="password"]:focus {
+            background-color: var(--sub_color1);
+        }
+        input::placeholder {
+            font-size: 30px;
+            font-family: 'Happiness-Sans-Regular';
+        }
+        #login-btn {
+            width: 500px;
+            height: 50px;
+            font-size: 30px;
+            padding: 0;
+            border: none;
+            margin-bottom: 10px;
+            font-family: 'Happiness-Sans-Regular';
+            background-color: var(--sub_color1);
+            transition: 300ms ease-in-out;
+            cursor: pointer;
+        }
+        #login-btn:hover {
+            background-color: #ffcd00;
+        }
+        #signup-btn {
+            width: 500px;
+            height: 50px;
+            font-size: 30px;
+            padding: 0;
+            border: none;
+            font-family: 'Happiness-Sans-Regular';
+            background-color: var(--sub_color1);
+            transition: 300ms ease-in-out;
+            cursor: pointer;
+            margin-bottom: 50px;
+        }
+        #signup-btn:hover {
+            background-color: var(--main-color);
+        }
+    </style>
 </head>
 <body>
-
+<div class="bg">
+    <div id="login-box">
+        <h1 id="log-title">쇼마이펫</h1>
+        <ul>
+            <li><input type="text" name="id" placeholder="아이디"></li>
+            <li><input type="password" name="password" placeholder="비밀번호"></li>
+            <li>
+                <button id="login-btn">로그인</button>
+            </li>
+            <li>
+                <button id="signup-btn">회원가입</button>
+            </li>
+        </ul>
+    </div>
+</div>
 </body>
 </html>
