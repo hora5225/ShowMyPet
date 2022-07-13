@@ -110,7 +110,8 @@ def get_posts():
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         # 포스팅 목록 받아오기
-        return jsonify({"result": "success", "msg": "포스팅을 가져왔습니다."})
+        pet_list = list(db.pet.find({}, {'_id': False}))
+        return jsonify({"result": "success", "msg": "포스팅을 가져왔습니다.",'pets':pet_list})
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
         return redirect(url_for("home"))
 
@@ -127,8 +128,8 @@ def get_posts():
 
 @app.route("/index", methods=["GET"]) #DB에서 pet 받아오기
 def web_pet_get():
-    pet_list = list(db.pet.find({}, {'_id': False}))
-    return jsonify({'pets':pet_list})
+
+    return jsonify({})
 
 
 if __name__ == '__main__':

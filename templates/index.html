@@ -129,7 +129,7 @@
             $('#pet-box').empty()
             $.ajax({
                 type: 'GET',
-                url: '/pet',
+                url: '/get_posts',
                 data: {},
                 success: function (response) {
                     let rows = response['pets']
