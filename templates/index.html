@@ -146,6 +146,12 @@
             });
         }
 
+        function sign_out() {
+            $.removeCookie('mytoken', {path: '/'});
+            alert('로그아웃!')
+            window.location.href = "/login"
+        }
+
     </script>
 </head>
 <body>
@@ -162,7 +168,7 @@
             <button type="button" class="write_btn" onClick="location.href='writing.html'">글쓰기</button>
         </li>
         <li>
-            <button class="logout_btn">로그아웃</button>
+            <button class="logout_btn" onclick="sign_out()">로그아웃</button>
         </li>
     </ul>
 </header>
