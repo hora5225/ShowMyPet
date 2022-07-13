@@ -131,6 +131,11 @@ def web_pet_get():
 
     return jsonify({})
 
+@app.route("/index/writing", methods=["GET"]) #DB에서 pet 받아오기
+def web_pet_writing():
+
+    return render_template('writing.html')
+
 
 @app.route("/pet", methods=['POST'])
 def upload():
