@@ -132,8 +132,16 @@
                 url: '/pet',
                 data: {},
                 success: function (response) {
-                    console.log(response)
-                    console.log("확인용")
+                    let rows = response['pets']
+                    for (let i = 0; i < rows.length; i++) {
+                        let image = rows[i]['image']
+                        let description = rows[i]['description']
+
+/*                        let temp_html = '<div>
+                            <td>${image}</td>
+                            <td>${description}</td>
+                            </tr>>'*/
+                    }
                 }
             });
         }
@@ -184,7 +192,8 @@
                     </div>
                 </div>
             </div>
-        </button>        <button class="card_btn">
+        </button>
+        <button class="card_btn">
             <div class="col">
                 <div class="card">
                     <img src="https://img.hani.co.kr/imgdb/resize/2019/0121/00501111_20190121.JPG"
@@ -194,7 +203,8 @@
                     </div>
                 </div>
             </div>
-        </button>        <button class="card_btn">
+        </button>
+        <button class="card_btn">
             <div class="col">
                 <div class="card">
                     <img src="https://img.hani.co.kr/imgdb/resize/2019/0121/00501111_20190121.JPG"
