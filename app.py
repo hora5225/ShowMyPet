@@ -130,9 +130,6 @@ def web_pet_get():
     pet_list = list(db.pet.find({}, {'_id': False}))
     return jsonify({'pets':pet_list})
 
-@app.route('/')
-def home():
-    return render_template('writing.html')
 
 @app.route("/pet", methods=['POST'])
 def upload():
