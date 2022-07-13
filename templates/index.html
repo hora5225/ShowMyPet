@@ -120,6 +120,25 @@
         }
 
     </style>
+
+    <script>
+        $(document).ready(function (){
+            show_pets();
+        });
+        function show_pets() {
+            $('#pet-box').empty()
+            $.ajax({
+                type: 'GET',
+                url: '/pet',
+                data: {},
+                success: function (response) {
+                    console.log(response)
+                    console.log("확인용")
+                }
+            });
+        }
+
+    </script>
 </head>
 <body>
 <section class="hero is-white">
