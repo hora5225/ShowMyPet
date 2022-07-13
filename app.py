@@ -132,5 +132,32 @@ def web_pet_get():
     return jsonify({})
 
 
+@app.route("/pet", methods=['POST'])
+def upload():
+    title_receive = request.form['title_give']
+    text_receive = request.form['text_give']
+
+    file = request.files["file_give"]
+
+    extension = file.filename.split('.')[-1]
+
+    today = datetime.now()
+    mytime = today.strftime('%Y년-%m월-%d일-%H시-%M분-%S초')
+
+    filename = f'file-{mytime}'
+
+    save_to = f'static/{filename}.{extension}'
+    file.save(save_to)
+
+    doc = {
+        'title':title_receive,
+        'text':text_receive,
+        'file':f'{filename}.{extension}'
+    }
+    db.pet.insert_one(doc)
+
+    return jsonify({'msg': '저장 완료'})
+
+
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
