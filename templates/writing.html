@@ -5,6 +5,8 @@
     <title>쇼마이펫 글쓰기</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <style>
         :root {
             --main-color: #ffcd00;
@@ -105,23 +107,43 @@
             justify-content: space-between;
             margin-top: 100px;
         }
+
         .sub-title {
             font-size: 50px;
             color: #333333;
             margin-bottom: 100px;
         }
+
         .contwrap {
-            display: flex;
+            width: 1100px;
         }
+
         #pic-box {
             width: 550px;
             height: 800px;
             border-radius: 15px;
             background-image: url("../static/pic_bg.jpg");
+            overflow: hidden;
+            float: left;
+            position: relative;
         }
-        .pet-pic {
-            width: 100%;
+
+        #file {
+            display: block;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-40%);
+            top: 450px;
         }
+
+        #choose_pic {
+            display: block;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 400px;
+        }
+
         input[name="title"] {
             width: 500px;
             height: 50px;
@@ -132,10 +154,12 @@
             font-family: 'Happiness-Sans-Title';
             padding-left: 10px;
         }
+
         input[name="title"]::placeholder {
             font-family: 'Happiness-Sans-Title';
         }
-        #text-box {
+
+        #writing-text {
             width: 500px;
             height: 715px;
             border: 1px solid var(--main-color);
@@ -146,15 +170,18 @@
             padding-left: 10px;
             padding-top: 10px;
         }
-        #text-box::placeholder {
+
+        #writing-text::placeholder {
             font-family: 'Happiness-Sans-Regular'
         }
+
         .sidewrap {
             display: flex;
             flex-direction: column;
             align-items: center;
             margin-left: 20px;
         }
+
         #save {
             border: none;
             padding: 0;
@@ -168,15 +195,45 @@
             transition: 500ms ease-in-out;
             width: 500px;
             margin-top: 30px;
+            float: right;
         }
+
         #save:hover {
             background-color: var(--main-color);
             color: #333;
         }
-        .is-sparta{
+
+        .is-sparta {
             color: #eec23f !important;;
         }
     </style>
+    <script>
+        function save_info() {
+            let title = $('#writing-title').val();
+            let text = $('#writing-text').val();
+
+            let file = $('#file')[0].files[0]
+            let form_data = new FormData()
+
+            form_data.append("file_give", file)
+            form_data.append("title_give", title)
+            form_data.append("text_give", text)
+
+
+            $.ajax({
+                type: 'POST',
+                url: '/pet',
+                data: form_data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    alert(response['msg'])
+                    window.location.reload()
+                }
+            });
+        }
+    </script>
 </head>
 <body>
 <section class="hero is-white">
@@ -200,12 +257,13 @@
     <h2 class="sub-title">글쓰기</h2>
     <div class="contwrap">
         <div id="pic-box">
-            <img class="pet-pic" src="">
+            <input type="file" name="image" id="file" placeholder="">
+            <label for="file" id="choose_pic">사진 선택하기</label>
         </div>
         <div class="sidewrap">
-            <input type="text" name="title" placeholder="제목">
-            <textarea id="text-box" name="text" placeholder="소개"></textarea>
-            <button id="save">저장하기</button>
+            <input type="text" name="title" placeholder="제목" id="writing-title">
+            <textarea name="text" placeholder="소개" id="writing-text"></textarea>
+            <button id="save" onclick="save_info()" value="Submit">저장하기</button>
         </div>
     </div>
 </div>
