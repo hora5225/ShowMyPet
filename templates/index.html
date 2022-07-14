@@ -139,10 +139,21 @@
                         let image = rows[i]['image']
                         let description = rows[i]['description']
 
-/*                        let temp_html = '<div>
-                            <td>${image}</td>
-                            <td>${description}</td>
-                            </tr>>'*/
+                        let temp_html = <button className="card_btn">
+                            <div className="col">
+                                <div className="card">
+                                    <img src=${image}
+                                         className="card-img-top" alt="...">
+                                        <div className="card-body">
+                                            <h5 className="card-title">${description}</h5>
+                                        </div>
+                                    </img>
+                                </div>
+                            </div>
+                        </button>
+                        $('#order_pet').append(temp_html)
+
+
                     }
                 }
             });
@@ -177,41 +188,8 @@
 
 
 <div class="wrap">
-    <div class="row row-cols-1 row-cols-md-4 g-4">
+    <div id="order_pet" class="row row-cols-1 row-cols-md-4 g-4">
 
-        <button class="card_btn">
-            <div class="col">
-                <div class="card">
-                    <img src="https://img.hani.co.kr/imgdb/resize/2019/0121/00501111_20190121.JPG"
-                         class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">우리집 귀여운 강아지</h5>
-                    </div>
-                </div>
-            </div>
-        </button>
-        <button class="card_btn">
-            <div class="col">
-                <div class="card">
-                    <img src="https://img.hani.co.kr/imgdb/resize/2019/0121/00501111_20190121.JPG"
-                         class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">우리집 귀여운 강아지</h5>
-                    </div>
-                </div>
-            </div>
-        </button>
-        <button class="card_btn">
-            <div class="col">
-                <div class="card">
-                    <img src="https://img.hani.co.kr/imgdb/resize/2019/0121/00501111_20190121.JPG"
-                         class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">우리집 귀여운 강아지</h5>
-                    </div>
-                </div>
-            </div>
-        </button>
         <button class="card_btn">
             <div class="col">
                 <div class="card">
