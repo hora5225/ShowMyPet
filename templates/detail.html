@@ -2,11 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>쇼마이펫 상세 페이지</title>
+    <title>Detail | SHOWMYPET</title>
 
     <link href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <meta property="og:title" content="쇼마이펫 - PET을 자랑해주세요"/>
+    <meta property="og:description" content="mini project for 항해99 A팀 2조"/>
+    <meta property="og:image" content="{{ url_for('static', filename='ogimg.png') }}"/>
+
 
 
     <!-- Bootstrap CSS -->
@@ -269,10 +276,10 @@
     <h1 class="main-title">쇼마이펫</h1>
     <ul class="btn-list">
         <li>
-            <button class="main_btn" onclick ='location.href="/"'>메인페이지</button>
+            <button class="main_btn" onclick='location.href="/"'>메인페이지</button>
         </li>
         <li>
-            <button class="logout_btn" onclick= "sign_out()">로그아웃</button>
+            <button class="logout_btn" onclick="sign_out()">로그아웃</button>
         </li>
     </ul>
 </header>

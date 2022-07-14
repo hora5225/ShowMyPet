@@ -2,10 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>쇼마이펫 글쓰기</title>
+    <title>Post | SHOWMYPET</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <meta property="og:title" content="쇼마이펫 - PET을 자랑해주세요"/>
+    <meta property="og:description" content="mini project for 항해99 A팀 2조"/>
+    <meta property="og:image" content="{{ url_for('static', filename='ogimg.png') }}"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 
     <style>
         :root {
@@ -233,6 +240,11 @@
                 }
             });
         }
+        function sign_out() {
+            $.removeCookie('mytoken', {path: '/'});
+            alert('로그아웃!')
+            window.location.href = "/login"
+        }
     </script>
 </head>
 <body>
@@ -246,10 +258,10 @@
     <h1 class="main-title">쇼마이펫</h1>
     <ul class="btn-list">
         <li>
-            <button class="main_btn">메인페이지</button>
+            <<button class="main_btn" onclick='location.href="/"'>메인페이지</button>
         </li>
         <li>
-            <button class="logout_btn">로그아웃</button>
+            <button class="logout_btn" onclick="sign_out()">로그아웃</button>
         </li>
     </ul>
 </header>
