@@ -225,21 +225,13 @@
 
                         let title = myPet[i]['title']
                         let comment = myPet[i]['text']
-                        //파일 가져오기
+                        //받은 word에 저장된 파일명을 file_name이라는 변수에 저장. 굳이 안하고 비교할 때 if안에 file="{{ word }}" 라고 써도 된다
                         let file_name = "{{ word }}"
-                        console.log(file_name)
+                        //console.log(file_name)
 
                         let file = myPet[i]['file']
-                        //title과 content의 내용을 출력해줌. 백틱 유의, 태그에 id값 넣어줘서 ,append
+
                         if (file == file_name) {
-//                             let temp_html = `<div class="card">
-// <!--                                            파일명으로 된 경로를 넣어준다-->
-//                                             <img src="../static/${file}" class="card-img-top">
-//                                             <div class="card-body">
-//                                                 <h5 class="card-title">${title}</h5>
-//                                                 <p class="card-text">${comment}</p>
-//                                             </div>
-//                                         </div>`
                             let temp_html = `<div class="contwrap">
                                                 <div id="pic-box">
                                                 <img src="../static/${file}" class="card-img-top">
