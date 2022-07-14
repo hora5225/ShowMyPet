@@ -2,10 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>쇼마이펫 글쓰기</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <title>쇼마이펫 상세 페이지</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+    <!-- Bootstrap CSS -->
+    <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet">
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <!--    파일 업로드용 js-->
+    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
+
+    <script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 
     <style>
         :root {
@@ -182,31 +202,67 @@
         }
     </style>
     <script>
-        function save_info() {
-            let title = $('#writing-title').val();
-            let text = $('#writing-text').val();
+        // 로딩 후 바로 listing 실행
+        $(document).ready(function () {
+            //파일 업로드 용 코드
+            bsCustomFileInput.init()
+            listing()
+        })
 
-            let file = $('#file')[0].files[0]
-            let form_data = new FormData()
+        function listing() {
 
-            form_data.append("file_give", file)
-            form_data.append("title_give", title)
-            form_data.append("text_give", text)
-
-
+            // GET 요청 ajax코드
             $.ajax({
-                type: 'POST',
-                url: '/pet',
-                data: form_data,
-                cache: false,
-                contentType: false,
-                processData: false,
+                type: "GET",
+                url: "/detail_listing",
+                data: {},
                 success: function (response) {
-                    alert(response['msg'])
-                    window.location.reload()
+                    //alert(response["msg"])
+
+                    // 서버에서 받아온 값 중에서
+                    let myPet = response['all_pet']
+                    for (let i = 0; i < myPet.length; i++) {
+
+                        let title = myPet[i]['title']
+                        let comment = myPet[i]['text']
+                        //파일 가져오기
+                        let file_name = "{{ word }}"
+                        console.log(file_name)
+
+                        let file = myPet[i]['file']
+                        //title과 content의 내용을 출력해줌. 백틱 유의, 태그에 id값 넣어줘서 ,append
+                        if (file == file_name) {
+//                             let temp_html = `<div class="card">
+// <!--                                            파일명으로 된 경로를 넣어준다-->
+//                                             <img src="../static/${file}" class="card-img-top">
+//                                             <div class="card-body">
+//                                                 <h5 class="card-title">${title}</h5>
+//                                                 <p class="card-text">${comment}</p>
+//                                             </div>
+//                                         </div>`
+                            let temp_html = `<div class="contwrap">
+                                                <div id="pic-box">
+                                                <img src="../static/${file}" class="card-img-top">
+                                                    </div>
+                                                    <div class="sidewrap">
+                                                        <h1 id="writing-title">${title}</h1>
+                                                        <p id="writing-text">${comment}</p>
+                                                    </div>
+                                               </div>`
+
+                            $('#card-box').append(temp_html)
+                        }
+                    }
                 }
-            });
+            })
         }
+
+        function sign_out() {
+            $.removeCookie('mytoken', {path: '/'});
+            alert('로그아웃!')
+            window.location.href = "/login"
+        }
+
     </script>
 </head>
 <body>
@@ -220,23 +276,23 @@
     <h1 class="main-title">쇼마이펫</h1>
     <ul class="btn-list">
         <li>
-            <button class="main_btn">메인페이지</button>
+            <button class="main_btn" onclick ='location.href="/"'>메인페이지</button>
         </li>
         <li>
-            <button class="logout_btn">로그아웃</button>
+            <button class="logout_btn" onclick= "sign_out()">로그아웃</button>
         </li>
     </ul>
 </header>
-<div class="wrap">
-    <div class="contwrap">
-        <div id="pic-box">
+<div class="wrap" id="card-box">
+    <!--    <div class="contwrap">-->
+    <!--        <div id="pic-box">-->
 
-        </div>
-        <div class="sidewrap">
-            <h1 id="writing-title"></h1>
-            <p id="writing-text"></p>
-        </div>
-    </div>
+    <!--        </div>-->
+    <!--        <div class="sidewrap">-->
+    <!--            <h1 id="writing-title"></h1>-->
+    <!--            <p id="writing-text"></p>-->
+    <!--        </div>-->
+    <!--    </div>-->
 </div>
 </body>
 </html>
