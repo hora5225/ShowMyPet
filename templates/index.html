@@ -128,30 +128,33 @@
             show_pets();
         });
         function show_pets() {
-            $('#pet-box').empty()
+            $('#post-box').empty()
             $.ajax({
                 type: 'GET',
                 url: '/get_posts',
                 data: {},
                 success: function (response) {
+                    console.log(response)
                     let rows = response['pets']
                     for (let i = 0; i < rows.length; i++) {
-                        let image = rows[i]['image']
-                        let description = rows[i]['description']
+                        let file = rows[i]['file']
+                        let title = rows[i]['title']
 
-                        let temp_html = <button className="card_btn">
-                            <div className="col">
-                                <div className="card">
-                                    <img src=${image}
-                                         className="card-img-top" alt="...">
-                                        <div className="card-body">
-                                            <h5 className="card-title">${description}</h5>
+
+                        let temp_html =`<button class="card_btn">
+                            <div class="col">
+                                <div class="card">
+                                    <img src="/static/${file}"
+                                         class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                         <h5 class="card-title">${title}</h5>
                                         </div>
                                     </img>
                                 </div>
                             </div>
-                        </button>
-                        $('#order_pet').append(temp_html)
+                        </button>`
+
+                        $('#post-box').append(temp_html)
 
 
                     }
@@ -188,7 +191,7 @@
 
 
 <div class="wrap">
-    <div id="order_pet" class="row row-cols-1 row-cols-md-4 g-4">
+    <div class="row row-cols-1 row-cols-md-4 g-4" id="post-box">
 
         <button class="card_btn">
             <div class="col">
@@ -201,6 +204,7 @@
                 </div>
             </div>
         </button>
+
     </div>
 </div>
 
