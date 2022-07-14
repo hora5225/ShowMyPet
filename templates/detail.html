@@ -142,10 +142,11 @@
             width: 550px;
             height: 800px;
             border-radius: 15px;
-            background-image: url("../static/pic_bg.jpg");
             overflow: hidden;
             float: left;
             position: relative;
+            background-size: cover;
+            background-position: center;
         }
 
         #file {
@@ -233,8 +234,8 @@
 
                         if (file == file_name) {
                             let temp_html = `<div class="contwrap">
-                                                <div id="pic-box">
-                                                <img src="../static/${file}" class="card-img-top">
+                                                <div id="pic-box" style="background-image: url('../static/${file}')">
+
                                                     </div>
                                                     <div class="sidewrap">
                                                         <h1 id="writing-title">${title}</h1>
